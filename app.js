@@ -1,34 +1,39 @@
 var createInjector = require('./injector')
 
-function nomnom() {
-  console.log('Nom Nom');
+function goToEat() {
+  console.log('Nom nom')
 }
 
-function Burger(name) {
-  this.selection = name
+function hungryPerson(decision) {
+  this.action = decision
 }
 
-Burger.prototype.followSmell = function() {
-  this._followSmell = true
+hungryPerson.prototype.followSmell = function() {
+  this._hungry = true
 }
 
-Burger.prototype.checkState = function() {
-  this._checkState = true
+hungryPerson.prototype.backToWork = function() {
+  this._hungry = false
 }
 
-Burger.prototype.eat = function() {
-  if (this._checkState) {
-    nomnom()
+hungryPerson.prototype.eat = function() {
+
+  if (this._hungry) {
+
+    this.action()
+
   }
+  
 }
 
-function hungryMode(toBurgerKing) {
-  toBurgerKing.followSmell()
-  toBurgerKing.checkState()
-  toBurgerKing.eat()
+function hungryMode(person) {
+  person.followSmell()
+  person.eat()
+  person.backToWork()
 }
+
 
 var injector = createInjector()
-injector.service('toBurgerKing', Burger)
-injector.constant('name', nomnom)
+injector.service('person', hungryPerson)
+injector.constant('decision', goToEat)
 injector.invoke(hungryMode)
