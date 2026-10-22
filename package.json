@@ -1,0 +1,10 @@
+{
+  "name": "dependency-injection-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal DI demo with a local test gate",
+  "scripts": {
+    "test": "node tests/smoke.cjs",
+    "start": "node app.js"
+  }
+}
